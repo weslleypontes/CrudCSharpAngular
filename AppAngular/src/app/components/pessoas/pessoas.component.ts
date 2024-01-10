@@ -61,6 +61,17 @@ export class PessoasComponent implements OnInit {
   EnviarForm(): void{
     const pessoa: Pessoa = this.formulario.value;
 
+    if(pessoa.pessoaId != 0 ){
+      this.pessoasService.AtualizarPessoa(pessoa).subscribe(res => {
+      this.visibilidadeTabela = true;
+      this.visibilidadeForm = false;
+      alert('pessoa atualizada com sucesso.');
+      this.pessoasService.PegarTodos().subscribe(result => {
+      this.pessoas = result;
+    });
+      });
+    }
+    else{
     this.pessoasService.SalvarPessoa(pessoa).subscribe(resultado => {
     this.visibilidadeTabela = true;
     this.visibilidadeForm = false;
@@ -70,7 +81,7 @@ export class PessoasComponent implements OnInit {
     });
 
     });
-
+}
   }
 
   Voltar(): void{

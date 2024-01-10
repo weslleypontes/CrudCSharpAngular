@@ -43,14 +43,12 @@ namespace CrudApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> AtualizarAsync(int id)
+        public async Task<ActionResult> AtualizarAsync(Pessoa pessoa)
         {
-            var result = contexto.Pessoas.FirstOrDefault(x => x.PessoaId == id);
-
-            if(result == null)
+            if(pessoa == null)
                 return NotFound();
 
-            contexto.Pessoas.Update(result);
+            contexto.Pessoas.Update(pessoa);
             await contexto.SaveChangesAsync();
 
             return Ok();
