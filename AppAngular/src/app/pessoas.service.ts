@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PessoasService {
-  url = 'https://localhost:5401/api/pessoas'
+  url = 'http://localhost:5204/api/pessoas'
 
   constructor(private http: HttpClient) { }
 

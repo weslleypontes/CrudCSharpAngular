@@ -16,12 +16,14 @@ export class PessoasComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.tituloFormulario = "Nova Pessoa";
+
     this.formulario = new FormGroup({
       nome: new FormControl(null),
       sobrenome: new FormControl(null),
       idade: new FormControl(null),
       profissao: new FormControl(null)
-    })
+    });
   }
 
 }
