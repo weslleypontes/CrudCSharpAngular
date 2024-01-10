@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CrudApi.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("api/[controller]")]
     public class PessoasController : ControllerBase
     {
         private readonly AppDbContext contexto;
@@ -17,14 +17,12 @@ namespace CrudApi.Controllers
         }
 
         [HttpGet]
-        [Route("pessoas")]
         public async Task<ActionResult<IEnumerable<Pessoa>>> GetAsync()
         {
             return await contexto.Pessoas.AsNoTracking().ToListAsync();
         }
 
-        [HttpGet]
-        [Route("pessoas/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Pessoa>> GetIdAsync(int id)
         {
             Pessoa pessoa = await contexto.Pessoas.FindAsync(id);
@@ -36,8 +34,7 @@ namespace CrudApi.Controllers
         }
 
         [HttpPost]
-        [Route("pessoas")]
-        public async Task<ActionResult<Pessoa>> SalvarAsync([FromBody] Pessoa p)
+        public async Task<ActionResult<Pessoa>> SalvarAsync(Pessoa p)
         {
             await contexto.Pessoas.AddAsync(p);
             await contexto.SaveChangesAsync();
@@ -45,8 +42,7 @@ namespace CrudApi.Controllers
             return Ok();
         }
 
-        [HttpPut]
-        [Route("pessoas/{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult> AtualizarAsync(int id)
         {
             var result = contexto.Pessoas.FirstOrDefault(x => x.PessoaId == id);
@@ -60,9 +56,8 @@ namespace CrudApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
-        [Route("pessoas/{id}")]
-        public async Task<ActionResult> DeleteAsync(int id)
+        [HttpDelete("{id}")]
+                public async Task<ActionResult> DeleteAsync(int id)
         {
             var result = contexto.Pessoas.FirstOrDefault(x => x.PessoaId == id);
 
