@@ -8,6 +8,7 @@
     <hr/>
     <table class="table table-striped table-hover table-sm" *ngIf="pessoas">
         <tr class="thead-light">
+            <th>Id</th>
             <th>Nome</th>
             <th>Sobrenome</th>
             <th>Idade</th>
@@ -16,12 +17,13 @@
         </tr>
 
         <tr *ngFor="let pessoa of pessoas">
+            <td>{{pessoa.pessoaId}}</td>
             <td>{{pessoa.nome}}</td>
             <td>{{pessoa.sobrenome}}</td>
             <td>{{pessoa.idade}}</td>
             <td>{{pessoa.profissao}}</td>
             <td>
-                <button type="button" class="btn btn-sm btn-outline-info">Atualizar</button> | 
+                <button type="button" class="btn btn-sm btn-outline-info" (click)="Atualizar(pessoa.pessoaId)">Atualizar</button> | 
                 <button type="button" class="btn btn-sm btn-outline-danger">Excluir</button>
             </td>
         </tr>

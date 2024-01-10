@@ -1,5 +1,5 @@
 export class Pessoa{
-    pessoaId?: number;
+    pessoaId: number = 1;
     nome?: string;
     sobrenome?: string;
     idade?: number;

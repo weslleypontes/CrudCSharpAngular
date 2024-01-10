@@ -42,7 +42,7 @@ namespace CrudApi.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<ActionResult> AtualizarAsync(Pessoa pessoa)
         {
             if(pessoa == null)

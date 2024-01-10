@@ -32,7 +32,7 @@ export class PessoasService {
   }
 
   AtualizarPessoa(pessoa: Pessoa) : Observable<any>{
-    return this.http.put<number>(this.url, pessoa, httpOptions);
+    return this.http.put<Pessoa>(this.url, pessoa, httpOptions);
   }
 
   DeletarPessoa(pessoaId: number) : Observable<any>{

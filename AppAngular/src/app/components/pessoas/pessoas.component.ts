@@ -41,10 +41,11 @@ export class PessoasComponent implements OnInit {
     });
   }
 
-  AtualizarCadastro(pessoaId: any): void{
+  Atualizar(id: number): void{
     this.visibilidadeTabela = false;
     this.visibilidadeForm = true;
-    this.pessoasService.PegarPorId(pessoaId).subscribe(res => {
+
+    this.pessoasService.PegarPorId(id).subscribe(res => {
       this.tituloFormulario = `Atualizar ${res.nome} ${res.sobrenome}`;
 
       this.formulario = new FormGroup({
@@ -61,7 +62,7 @@ export class PessoasComponent implements OnInit {
   EnviarForm(): void{
     const pessoa: Pessoa = this.formulario.value;
 
-    if(pessoa.pessoaId != 0 ){
+    if(pessoa.pessoaId > 0){
       this.pessoasService.AtualizarPessoa(pessoa).subscribe(res => {
       this.visibilidadeTabela = true;
       this.visibilidadeForm = false;
@@ -81,7 +82,7 @@ export class PessoasComponent implements OnInit {
     });
 
     });
-}
+    }
   }
 
   Voltar(): void{
